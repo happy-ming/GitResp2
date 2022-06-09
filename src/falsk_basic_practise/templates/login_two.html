@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单验证</title>
+</head>
+<body>
+    <form method="post">
+        {# 开启CSRF  跨站域请求伪造 #}
+        {{ form.csrf_token() }}
+        {{ form.username.label }}{{ form.username }}<br>
+        {{ form.password.label }}{{ form.password }}<br>
+        {{ form.bypassword.label }}{{ form.bypassword }}<br>
+        {{ form.submit }}
+    </form>
+</body>
+</html>

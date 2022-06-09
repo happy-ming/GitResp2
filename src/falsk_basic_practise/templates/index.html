@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>hello python</h1>
+    <h2>hello flask</h2>
+
+    {# 传入网址  {{}}称为变量代码块 #}
+    <p> {{ url_str }}</p>
+    {# 列表的使用 #}
+    {{ my_list }} <br>
+    {{ my_list.2 }}  <br>
+    {{ my_list[2] }} <br>
+    {# 字典的使用 #}
+    {{ my_dict }} <br>
+    {{ my_dict.url }}<br>
+    {{ my_dict['url'] }}<br>
+<hr>
+{# 控制代码块基本操作 --- for循环使用#}
+{% for foo in my_list %}
+    {% if foo >3 %}
+        {{ foo }}
+    {% endif %}
+{% endfor %}
+<hr>
+{# 过滤器的使用 #}
+{# upper 全部大写#}
+    {{ url_str | upper }}<br>
+{# reverse 反转#}
+    {{ url_str | reverse }}<br>
+{# 禁用转义 #}
+    {{ '<em>hello</em>' | safe}}<br>
+{# 把变量值的首字母大写，其余小写 #}
+    {{ 'Control' | capitalize }}<br>
+{# 变量值小写 #}
+    {{ 'FAST' | lower }}<br>
+{# 把值中的每一个单词的首字母都转成大写 #}
+    {{ 'java' | title }}<br>
+{# 格式化输出 #}
+    {{ '%s is %d' | format('那么',16) }}<br>
+{# 渲染之前把值中所有的html标签删除 #}
+    {{ '<em>python</em>' | striptags }}<br>
+{# 字符串截断 #}
+    {{ 'hello every one' | truncate(9) }}<br>
+{# 过滤器链式调用 #}
+    {{ 'hello' | upper | reverse | lower }}<br>
+
+{# 列表的操作 #}
+{# 取第一个元素 #}
+    {{ [1,2,3,4,5,6] | first }}<br>
+{# 取最后一个元素 #}
+    {{ [1,2,3,4,5,6] | last }}<br>
+{# 获取列表的长度 #}
+    {{ [1,2,3,4,5,6] | length }}<br>
+{# 列表求和 #}
+    {{ [1,2,3,4,5,6] | sum }}<br>
+{# 列表排序 #}
+    {{ [5,2,9,1,7] | sort }}<br>
+<hr>
+
+</body>
+</html>
