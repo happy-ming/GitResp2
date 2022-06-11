@@ -91,5 +91,16 @@ def jinjia2_test():
     return render_template('jinjia2测试器.html',variable=variable)
 
 
+# 类似于python中的函数，宏的作用就是在模板中重复利用代码，避免代码冗余。
+# Jinja2支持宏，还可以导入宏，需要在多处重复使用的模板代码片段可以写入单独的文件，
+# 再包含在所有模板中，以避免重复。
+context={
+    'username': '老萝卜',
+    'age': 18
+}
+@app.route("/macrol/")
+def demo_marco2():
+    return render_template('macro2.html', **context)
+
 if __name__ == '__main__':
     app.run(debug=True)
