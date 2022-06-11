@@ -5,6 +5,9 @@ from flask import Flask,make_response,request,redirect,url_for,abort
 
 app = Flask(__name__)
 
+# 当配置过多，需要模块来加载
+# app.config.from_pyfile('setting.py',silent=True)
+
 # 获取request请求值
 app.route('/request/<path:info>',methods=['POST','GET'])
 def request_url(info):
@@ -28,6 +31,7 @@ def request_url(info):
     网页返回值：127.0.0.1:5000
     '''
     # 获取url参数
+    # http://127.0.0.1:5000/request/abc/def?username=xiaoming&pwd=123
     # return request.args.get('username')
     # return request.args.get('pwd')
     # return str(request.args)
@@ -36,6 +40,9 @@ def request_url(info):
 
 # 响应的构造
 @app.route('/response/')
+# 当访问一个结尾不带斜线的URL：/response，会被重定向到带斜线的URL：/response/上去。
+# 但是当我们在定义response的url的时候，如果在末尾没有加上斜杠，但是在访问的时候又加上了斜杠，
+# 这时候就会抛出一个404错误页面了：
 def response():
     # 构造一个404状态码,默认是200
     # return 'not found',404
@@ -57,6 +64,27 @@ def login():
     # return '欢迎登录'
     # 此处使用abort可以主动抛出异常
     abort(404)
+
+# 重定向
+'''
+重定向是通过flask.redirect(location,code=302)这个函数来实现的，
+location表示需要重定向到的URL，应该配合之前讲的url_for()函数来使用，
+code表示采用哪个重定向，默认是302也即暂时性重定向，可以修改成301来实现永久性重定向。
+'''
+@app.route('/login/',methods=['POST','GET'])
+def login():
+    return 'login page'
+
+@app.route('/profile',method=['POST','GET'])
+def profile():
+    name = request.args.get('name')
+
+    if not name:
+        # 如果没有name，说明没有登录，重定向到登录页面
+        return redirect(url_for('login'))
+    else:
+        return name
+
 
 if __name__ == '__main__':
     app.run(debug=True)
