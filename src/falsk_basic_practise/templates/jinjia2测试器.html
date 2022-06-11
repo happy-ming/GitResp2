@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jinjia2测试</title>
+</head>
+<body>
+{# callable ---- 是否可调用 #}
+{# defined ---- 是否已经被定义了 #}
+{# escaped ---- 是否已经被转义了 #}
+{# upper ---- 是否全是大写 #}
+{# lower ---- 是否全是小写 #}
+{# string ---- 是否是一个序列 #}
+{# number ---- 是否是一个数字 #}
+{# odd ---- 是否是奇数 #}
+{# even ---- 是否是偶数 #}
+    <h2>
+        {% if variable is string%}
+            value of escaped: {{ variable }}
+        {% else %}
+            {{ variable }} is not escaped
+        {% endif %}
+    </h2>
+</body>
+</html>
