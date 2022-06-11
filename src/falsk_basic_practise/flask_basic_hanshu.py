@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 # 个人项目
 # 开发时间：2022/6/10 14:09
-from flask import Flask,make_response,request,redirect,url_for,abort
+from flask import Flask,make_response,request,redirect,url_for,abort,render_template
 
 app = Flask(__name__)
 
@@ -72,10 +72,10 @@ location表示需要重定向到的URL，应该配合之前讲的url_for()函数
 code表示采用哪个重定向，默认是302也即暂时性重定向，可以修改成301来实现永久性重定向。
 '''
 @app.route('/login/',methods=['POST','GET'])
-def login():
+def logins():
     return 'login page'
 
-@app.route('/profile',method=['POST','GET'])
+@app.route('/profile',methods=['POST','GET'])
 def profile():
     name = request.args.get('name')
 
@@ -84,6 +84,11 @@ def profile():
         return redirect(url_for('login'))
     else:
         return name
+
+@app.route('/',methods=['POST','GET'])
+def jinjia2_test():
+    variable = 12
+    return render_template('jinjia2测试器.html',variable=variable)
 
 
 if __name__ == '__main__':
