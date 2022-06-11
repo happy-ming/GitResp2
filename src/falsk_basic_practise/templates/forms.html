@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建宏</title>
+</head>
+<body>
+    <!--不带参数宏的定义-->
+    {% macro input() %}
+    <input type="text" name='username' value=''>
+    {% endmacro %}
+
+	<!--带参数宏的定义-->
+    {% macro input2(name, value='', type='text', size=30) %}
+        <input type="{{ type }}" name="{{ name }}" value="{{ value }}" size="{{ size }}">
+    {% endmacro %}
+</body>
+</html>
