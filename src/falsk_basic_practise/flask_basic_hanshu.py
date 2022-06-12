@@ -102,5 +102,45 @@ context={
 def demo_marco2():
     return render_template('macro2.html', **context)
 
+# 一个模板引入到另外一个模板中
+# {% include 'header.html' %}
+# 	主体内容
+# {% include 'footer.html' %}
+
+# 赋值（set）语句
+# {% set name='zhiliao' %}
+
+
+# 模板继承
+@app.route('/head/')
+def father_basic():
+    return render_template('head.html')
+@app.route('/about/')
+def about():
+    return render_template('about.html')
+
+# 数据类型
+'''
+字符串、整型、浮点型、列表、元组、字典、True/False
+'''
+
+# 运算符
+'''
+    +号运算符：可以完成数字相加，字符串相加，列表相加。但是并不推荐使用+运算符来操作字符串，
+字符串相加应该使用~运算符。
+    -号运算符：只能针对两个数字相减。
+    /号运算符：对两个数进行相除。
+    %号运算符：取余运算。
+    *号运算符：乘号运算符，并且可以对字符进行相乘。
+    **号运算符：次幂运算符，比如2**3=8。
+    in操作符：跟python中的in一样使用，比如{{1 in [1,2,3]}}返回true。
+    ~号运算符：拼接多个字符串，比如{{"Hello" ~ "World"}}将返回HelloWorld
+'''
+
+# 静态文件配置
+'''
+不在static文件中
+app = Flask(__name__,static_folder='C:\static')
+'''
 if __name__ == '__main__':
     app.run(debug=True)

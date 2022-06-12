@@ -1,13 +1,12 @@
 {% from 'forms.html'  import input2 with context %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>宏的使用</title>
-</head>
-<body>
+{% extends 'father_basic.html' %}
+
+{% block title %}
+    宏的使用
+{% endblock %}
+
+{% block body %}
     <p>输入用户名：{{ input2('username', value=username, type='text', size=20) }}</p>
     <p>输入密码：{{ input2('passwd', value='', type='password', size=10) }}</p>
     <p>输入年龄：{{ input2('age', value='18', type='text', size=5) }}</p>
-</body>
-</html>
+{% endblock %}
